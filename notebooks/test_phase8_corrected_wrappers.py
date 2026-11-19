@@ -3,17 +3,38 @@ import sys
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-EXPECTED_API = Path(
-    r"C:\Users\Tushti Gupta\AI_Software_Engineering_Agent"
-    r"\data\raw_repositories\requests\src\requests\api.py"
+
+# ============================================================
+# 1. PROJECT PATH CONFIGURATION
+# Cross-platform: Windows + Linux (Streamlit Cloud)
+# ============================================================
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+EXPECTED_API = (
+    PROJECT_ROOT
+    / "data"
+    / "raw_repositories"
+    / "requests"
+    / "src"
+    / "requests"
+    / "api.py"
 )
 
-# Prioritize the extracted production source.
+assert EXPECTED_API.is_file(), (
+    f"Expected production source file not found: {EXPECTED_API}"
+)
+
+
+# ============================================================
+# 2. IMPORT EXTRACTED PRODUCTION SOURCE
+# ============================================================
+
 REQUESTS_SRC = EXPECTED_API.parent.parent
+
 sys.path.insert(0, str(REQUESTS_SRC))
 
-# Remove any previously cached requests modules so Python reloads
-# the package from the extracted source directory.
+# Clear previously cached Requests modules.
 for module_name in list(sys.modules):
     if module_name == "requests" or module_name.startswith("requests."):
         del sys.modules[module_name]
@@ -21,16 +42,33 @@ for module_name in list(sys.modules):
 import requests.api as api
 
 
-# Ensure tests run against the project's extracted production source.
-assert Path(api.__file__).resolve() == EXPECTED_API.resolve(), (
-    f"Wrong requests module imported: {api.__file__}"
+# ============================================================
+# 3. VERIFY CORRECT PRODUCTION MODULE
+# ============================================================
+
+ACTUAL_API = Path(api.__file__).resolve()
+
+assert ACTUAL_API == EXPECTED_API.resolve(), (
+    f"Wrong requests module imported!\n"
+    f"Expected: {EXPECTED_API.resolve()}\n"
+    f"Actual:   {ACTUAL_API}"
 )
 
 
+# ============================================================
+# TEST 1: GET WRAPPER
+# ============================================================
+
 def test_get_forwards_arguments_and_returns_result():
+
     expected_response = Mock()
 
-    with patch.object(api, "request", return_value=expected_response) as mocked:
+    with patch.object(
+        api,
+        "request",
+        return_value=expected_response
+    ) as mocked:
+
         result = api.get(
             "https://example.com",
             params={"page": 2},
@@ -43,13 +81,24 @@ def test_get_forwards_arguments_and_returns_result():
         params={"page": 2},
         timeout=5
     )
+
     assert result is expected_response
 
 
+# ============================================================
+# TEST 2: OPTIONS WRAPPER
+# ============================================================
+
 def test_options_forwards_arguments_and_returns_result():
+
     expected_response = Mock()
 
-    with patch.object(api, "request", return_value=expected_response) as mocked:
+    with patch.object(
+        api,
+        "request",
+        return_value=expected_response
+    ) as mocked:
+
         result = api.options(
             "https://example.com",
             timeout=3,
@@ -62,26 +111,46 @@ def test_options_forwards_arguments_and_returns_result():
         timeout=3,
         headers={"X-Test": "true"}
     )
+
     assert result is expected_response
 
 
+# ============================================================
+# TEST 3: REQUEST DELEGATION TO SESSION
+# ============================================================
+
 def test_request_delegates_to_session():
+
     expected_response = Mock()
     session_instance = Mock()
-    session_instance.__enter__ = Mock(return_value=session_instance)
-    session_instance.__exit__ = Mock(return_value=False)
+
+    session_instance.__enter__ = Mock(
+        return_value=session_instance
+    )
+
+    session_instance.__exit__ = Mock(
+        return_value=False
+    )
+
     session_instance.request.return_value = expected_response
 
-    with patch.object(api.sessions, "Session", return_value=session_instance):
+    with patch.object(
+        api.sessions,
+        "Session",
+        return_value=session_instance
+    ):
+
         result = api.request(
             "get",
             "https://example.com",
             timeout=4
         )
 
+    # Production code uses keyword arguments.
     session_instance.request.assert_called_once_with(
         method="get",
         url="https://example.com",
         timeout=4
     )
+
     assert result is expected_response
