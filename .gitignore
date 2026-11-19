@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Model caches
+.cache/
+.cache_huggingface/
+huggingface_cache/
+models/
+
+# Logs and temporary files
+*.log
+temp/
+tmp/
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Generated backups
+app_BACKUP_*.py
+
+# Streamlit
+.streamlit/config.toml
+
+
+# Nexus AI deployment safety
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+
+# Never upload nested repository history
+**/.git/
+
+# Exclude notebook checkpoints
+**/.ipynb_checkpoints/
+
+# Exclude local backups
+app_BACKUP_*.py
+*_backup_*.py
+*_before_*.py
+*_prevalidated_*.py
+
+# Exclude local caches
+**/__pycache__/
+**/.cache/
+data/raw_repositories/flask/tests/test_apps/.flaskenv 

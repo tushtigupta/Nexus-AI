@@ -1,0 +1,39 @@
+{
+  "phase": 8,
+  "title": "AI-Generated Test Candidate Quality Audit",
+  "audited_at": "2026-10-27T18:50:20",
+  "candidates_reviewed": 2,
+  "findings": [
+    {
+      "function": "get",
+      "issue": "Test incorrectly expects TypeError when params is omitted.",
+      "decision": "Reject test expectation",
+      "reason": "The params argument is optional."
+    },
+    {
+      "function": "get",
+      "issue": "Exception expectation for a None URL is unverified.",
+      "decision": "Requires source-backed validation",
+      "reason": "The exact behavior must be checked against the implementation."
+    },
+    {
+      "function": "options",
+      "issue": "Valid URL is paired with an unexpected ValueError assertion.",
+      "decision": "Reject test expectation",
+      "reason": "The assertion does not match the intended normal use of options."
+    },
+    {
+      "function": "options",
+      "issue": "Missing-URL exception message is unverified.",
+      "decision": "Requires validation",
+      "reason": "Verify the actual signature and Python exception message."
+    },
+    {
+      "function": "options",
+      "issue": "Response is referenced without an explicit import.",
+      "decision": "Reject or repair candidate",
+      "reason": "The generated test may raise NameError."
+    }
+  ],
+  "overall_assessment": "Candidates require correction before execution. Existing verified tests are preserved."
+}

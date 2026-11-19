@@ -1,0 +1,19 @@
+Phase 8 — Automated Test Generation
+
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.5, pytest-8.3.4, pluggy-1.5.0 -- C:\Users\Tushti Gupta\anaconda3\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Tushti Gupta\AI_Software_Engineering_Agent\notebooks
+plugins: anyio-4.7.0
+[1mcollecting ... [0mcollected 6 items
+
+test_phase8_generated.py::test_verify_false_disables_certificate_verification [32mPASSED[0m[32m [ 16%][0m
+test_phase8_generated.py::test_verify_string_file_path [32mPASSED[0m[32m            [ 33%][0m
+test_phase8_generated.py::test_verify_string_directory_path [32mPASSED[0m[32m       [ 50%][0m
+test_phase8_generated.py::test_client_cert_tuple [32mPASSED[0m[32m                  [ 66%][0m
+test_phase8_generated.py::test_client_cert_string [32mPASSED[0m[32m                 [ 83%][0m
+test_phase8_generated.py::test_host_parameters_are_parsed_correctly [32mPASSED[0m[32m [100%][0m
+
+[32m============================== [32m[1m6 passed[0m[32m in 0.36s[0m[32m ==============================[0m
+
+Pytest exit code: 0

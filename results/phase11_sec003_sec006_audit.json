@@ -1,0 +1,81 @@
+{
+    "phase": 11,
+    "section": "SEC003 and SEC006 Security Audit",
+    "total_findings_inspected": 8,
+    "classifications": {
+        "context_dependent": 8,
+        "likely_false_positive": 0,
+        "confirmed_vulnerability": 0
+    },
+    "findings": [
+        {
+            "rule": "SEC003",
+            "repository": "black",
+            "file": "src/black/cache.py",
+            "line": 80,
+            "classification": "context_dependent",
+            "reason": "Pickle cache deserialization. Cache file integrity and write access require verification."
+        },
+        {
+            "rule": "SEC003",
+            "repository": "black",
+            "file": "src/blib2to3/pgen2/grammar.py",
+            "line": 124,
+            "classification": "context_dependent",
+            "reason": "Loads grammar data from a pickle file. The trustworthiness of the file must be established."
+        },
+        {
+            "rule": "SEC003",
+            "repository": "black",
+            "file": "src/blib2to3/pgen2/grammar.py",
+            "line": 129,
+            "classification": "context_dependent",
+            "reason": "Deserializes pickle bytes. Caller-controlled input must be assessed."
+        },
+        {
+            "rule": "SEC003",
+            "repository": "pydantic",
+            "file": "pydantic/deprecated/parse.py",
+            "line": 55,
+            "classification": "context_dependent",
+            "reason": "Pickle decoding requires explicit allow_pickle opt-in. Untrusted pickle data remains unsafe."
+        },
+        {
+            "rule": "SEC003",
+            "repository": "pydantic",
+            "file": "pydantic/v1/parse.py",
+            "line": 42,
+            "classification": "context_dependent",
+            "reason": "Pickle decoding requires explicit allow_pickle opt-in. Untrusted pickle data remains unsafe."
+        },
+        {
+            "rule": "SEC006",
+            "repository": "pytest",
+            "file": "testing/freeze/create_executable.py",
+            "line": 16,
+            "classification": "context_dependent",
+            "reason": "Shell command is assembled from arguments. Verify whether any argument can be controlled by untrusted input."
+        },
+        {
+            "rule": "SEC006",
+            "repository": "rich",
+            "file": "tools/make_width_tables.py",
+            "line": 22,
+            "classification": "context_dependent",
+            "reason": "Shell command includes a generated file path. Verify path origin and whether shell metacharacters can enter it."
+        },
+        {
+            "rule": "SEC006",
+            "repository": "rich",
+            "file": "tools/make_width_tables.py",
+            "line": 53,
+            "classification": "context_dependent",
+            "reason": "Shell command includes a generated file path. Verify path origin and whether shell metacharacters can enter it."
+        }
+    ],
+    "limitations": [
+        "Classification is preliminary and based on the inspected source snippets.",
+        "No exploit testing or runtime security testing was performed.",
+        "No finding is labelled a confirmed vulnerability from this inspection alone."
+    ]
+}

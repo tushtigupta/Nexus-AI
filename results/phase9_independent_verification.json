@@ -1,0 +1,1547 @@
+{
+  "phase": 9,
+  "title": "Independent Source-Pattern Verification",
+  "generated_at_utc": "2026-10-27T14:02:06.918152+00:00",
+  "project_root": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent",
+  "original_scan_report": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\results\\phase9_static_security_findings.json",
+  "manual_review_report_exists": true,
+  "findings_checked": 37,
+  "patterns_reproduced": 31,
+  "source_unavailable": 0,
+  "reported_lines_missing": 0,
+  "result_counts": {
+    "PATTERN_REPRODUCED": 31,
+    "PATTERN_NOT_REPRODUCED": 6
+  },
+  "confirmed_vulnerabilities": null,
+  "status": "Independent source-pattern verification completed; exploitability and caller-level review remain separate.",
+  "methodology": [
+    "Reread each finding from the original scan report.",
+    "Read the current source file and record its SHA-256 hash.",
+    "Check the recorded location and nearby lines against a rule-specific pattern.",
+    "Preserve source context for reproducibility.",
+    "Do not equate pattern detection with a confirmed vulnerability."
+  ],
+  "limitations": [
+    "This is a static pattern-verification pass, not a full security audit.",
+    "It does not execute the scanned repositories or exploit findings.",
+    "Caller-level trust analysis, dependency review, and runtime testing are not established by this cell.",
+    "No finding is automatically marked as a confirmed vulnerability."
+  ],
+  "findings": [
+    {
+      "finding_number": 1,
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\black\\cache.py",
+      "line": 80,
+      "rule_id": "SEC003",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: pickle.load()",
+      "source_exists": true,
+      "source_sha256": "87746542f63bc07a1185033b0a80053c5c0acf98890846a4aa413c3abea647d6",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 78,
+          "text": "        with cache_file.open(\"rb\") as fobj:"
+        },
+        {
+          "line": 79,
+          "text": "            try:"
+        },
+        {
+          "line": 80,
+          "text": "                data: dict[str, tuple[float, int, str]] = pickle.load(fobj)"
+        },
+        {
+          "line": 81,
+          "text": "                file_data = {k: FileData(*v) for k, v in data.items()}"
+        },
+        {
+          "line": 82,
+          "text": "            except ("
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "The trustworthiness of pickle data and caller controls must be assessed."
+      ]
+    },
+    {
+      "finding_number": 2,
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\conv.py",
+      "line": 186,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "a3176ab863f8ebd3de43016618cf7603d14912d6654156fbfefe2716acf3b176",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 184,
+          "text": "            assert mo, (lineno, line)"
+        },
+        {
+          "line": 185,
+          "text": "            first = {}"
+        },
+        {
+          "line": 186,
+          "text": "            rawbitset = eval(mo.group(1))"
+        },
+        {
+          "line": 187,
+          "text": "            for i, c in enumerate(rawbitset):"
+        },
+        {
+          "line": 188,
+          "text": "                byte = ord(c)"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 3,
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\conv.py",
+      "line": 212,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "a3176ab863f8ebd3de43016618cf7603d14912d6654156fbfefe2716acf3b176",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 210,
+          "text": "                y = None"
+        },
+        {
+          "line": 211,
+          "text": "            else:"
+        },
+        {
+          "line": 212,
+          "text": "                y = eval(y)"
+        },
+        {
+          "line": 213,
+          "text": "            labels.append((x, y))"
+        },
+        {
+          "line": 214,
+          "text": "        lineno, line = lineno + 1, next(f)"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 4,
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\grammar.py",
+      "line": 124,
+      "rule_id": "SEC003",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: pickle.load()",
+      "source_exists": true,
+      "source_sha256": "9162c97f76ddbc73b883f6f733f104a3df18228040c1406d14561677b9051f47",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 122,
+          "text": "        \"\"\"Load the grammar tables from a pickle file.\"\"\""
+        },
+        {
+          "line": 123,
+          "text": "        with open(filename, \"rb\") as f:"
+        },
+        {
+          "line": 124,
+          "text": "            d = pickle.load(f)"
+        },
+        {
+          "line": 125,
+          "text": "        self._update(d)"
+        },
+        {
+          "line": 126,
+          "text": ""
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "The trustworthiness of pickle data and caller controls must be assessed."
+      ]
+    },
+    {
+      "finding_number": 5,
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\grammar.py",
+      "line": 129,
+      "rule_id": "SEC003",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: pickle.loads()",
+      "source_exists": true,
+      "source_sha256": "9162c97f76ddbc73b883f6f733f104a3df18228040c1406d14561677b9051f47",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 127,
+          "text": "    def loads(self, pkl: bytes) -> None:"
+        },
+        {
+          "line": 128,
+          "text": "        \"\"\"Load the grammar tables from a pickle bytes object.\"\"\""
+        },
+        {
+          "line": 129,
+          "text": "        self._update(pickle.loads(pkl))"
+        },
+        {
+          "line": 130,
+          "text": ""
+        },
+        {
+          "line": 131,
+          "text": "    def copy(self: _P) -> _P:"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "The trustworthiness of pickle data and caller controls must be assessed."
+      ]
+    },
+    {
+      "finding_number": 6,
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\pgen.py",
+      "line": 100,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "087c0d727059d855bd1264cff24990ea16abf6625d08f3d22c40bcfc2eb37c9e",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 98,
+          "text": "            # Either a keyword or an operator"
+        },
+        {
+          "line": 99,
+          "text": "            assert label[0] in ('\"', \"'\"), label"
+        },
+        {
+          "line": 100,
+          "text": "            value = eval(label)"
+        },
+        {
+          "line": 101,
+          "text": "            if value[0].isalpha():"
+        },
+        {
+          "line": 102,
+          "text": "                if label[0] == '\"':"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 7,
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial004_an_py310.py",
+      "line": 13,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "SECRET_KEY=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "52a7cfdac3d44838b9c40ebcda2dbf13d5a5788b0f938c98b3061a9f9d32f724",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 11,
+          "text": "# to get a string like this run:"
+        },
+        {
+          "line": 12,
+          "text": "# openssl rand -hex 32"
+        },
+        {
+          "line": 13,
+          "text": "SECRET_KEY = \"09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7\""
+        },
+        {
+          "line": 14,
+          "text": "ALGORITHM = \"HS256\""
+        },
+        {
+          "line": 15,
+          "text": "ACCESS_TOKEN_EXPIRE_MINUTES = 30"
+        }
+      ],
+      "pattern_reproduced": false,
+      "verification_result": "PATTERN_NOT_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "The original pattern was not independently reproduced within the checked source context.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 8,
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial004_py310.py",
+      "line": 12,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "SECRET_KEY=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "bc8d0a4102cf86312f79690deae2b945864187086ecc418d6bd960a618caef8c",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 10,
+          "text": "# to get a string like this run:"
+        },
+        {
+          "line": 11,
+          "text": "# openssl rand -hex 32"
+        },
+        {
+          "line": 12,
+          "text": "SECRET_KEY = \"09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7\""
+        },
+        {
+          "line": 13,
+          "text": "ALGORITHM = \"HS256\""
+        },
+        {
+          "line": 14,
+          "text": "ACCESS_TOKEN_EXPIRE_MINUTES = 30"
+        }
+      ],
+      "pattern_reproduced": false,
+      "verification_result": "PATTERN_NOT_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "The original pattern was not independently reproduced within the checked source context.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 9,
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial005_an_py310.py",
+      "line": 17,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "SECRET_KEY=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "41fa540bf3cd0de06f613ca9560ffef837e677c16faa9cda5281e4fe7716bda2",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 15,
+          "text": "# to get a string like this run:"
+        },
+        {
+          "line": 16,
+          "text": "# openssl rand -hex 32"
+        },
+        {
+          "line": 17,
+          "text": "SECRET_KEY = \"09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7\""
+        },
+        {
+          "line": 18,
+          "text": "ALGORITHM = \"HS256\""
+        },
+        {
+          "line": 19,
+          "text": "ACCESS_TOKEN_EXPIRE_MINUTES = 30"
+        }
+      ],
+      "pattern_reproduced": false,
+      "verification_result": "PATTERN_NOT_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "The original pattern was not independently reproduced within the checked source context.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 10,
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial005_py310.py",
+      "line": 16,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "SECRET_KEY=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "6b7ebcb54afec8eaf5fd5c68b441805b2ef830c49b60f620c5d5388053dd5a4f",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 14,
+          "text": "# to get a string like this run:"
+        },
+        {
+          "line": 15,
+          "text": "# openssl rand -hex 32"
+        },
+        {
+          "line": 16,
+          "text": "SECRET_KEY = \"09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7\""
+        },
+        {
+          "line": 17,
+          "text": "ALGORITHM = \"HS256\""
+        },
+        {
+          "line": 18,
+          "text": "ACCESS_TOKEN_EXPIRE_MINUTES = 30"
+        }
+      ],
+      "pattern_reproduced": false,
+      "verification_result": "PATTERN_NOT_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "The original pattern was not independently reproduced within the checked source context.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 11,
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\fastapi\\openapi\\models.py",
+      "line": 322,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "apiKey=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "74f730b07fad2883b73cfa1d09ef8d1cb52c2f492bd57703df8244beb4875df6",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 320,
+          "text": ""
+        },
+        {
+          "line": 321,
+          "text": "class SecuritySchemeType(Enum):"
+        },
+        {
+          "line": 322,
+          "text": "    apiKey = \"apiKey\""
+        },
+        {
+          "line": 323,
+          "text": "    http = \"http\""
+        },
+        {
+          "line": 324,
+          "text": "    oauth2 = \"oauth2\""
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 12,
+      "repository": "flask",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\flask\\src\\flask\\cli.py",
+      "line": 1023,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "063371022281c8fc08d5f693ed470acbf8b5cb2fd80bf5cf2d11f7f5f1704ab8",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 1021,
+          "text": "    if startup and os.path.isfile(startup):"
+        },
+        {
+          "line": 1022,
+          "text": "        with open(startup) as f:"
+        },
+        {
+          "line": 1023,
+          "text": "            eval(compile(f.read(), startup, \"exec\"), ctx)"
+        },
+        {
+          "line": 1024,
+          "text": ""
+        },
+        {
+          "line": 1025,
+          "text": "    ctx.update(current_app.make_shell_context())"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 13,
+      "repository": "flask",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\flask\\src\\flask\\config.py",
+      "line": 66,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "SECRET_KEY=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "1e96b8823b559bb504f168c07c86334cdde5370525b2aebd99f67336cdc4c205",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 64,
+          "text": ""
+        },
+        {
+          "line": 65,
+          "text": "        DEBUG = True"
+        },
+        {
+          "line": 66,
+          "text": "        SECRET_KEY = 'development key'"
+        },
+        {
+          "line": 67,
+          "text": "        app.config.from_object(__name__)"
+        },
+        {
+          "line": 68,
+          "text": ""
+        }
+      ],
+      "pattern_reproduced": false,
+      "verification_result": "PATTERN_NOT_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "The original pattern was not independently reproduced within the checked source context.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 14,
+      "repository": "flask",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\flask\\src\\flask\\config.py",
+      "line": 209,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "1e96b8823b559bb504f168c07c86334cdde5370525b2aebd99f67336cdc4c205",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 207,
+          "text": "        try:"
+        },
+        {
+          "line": 208,
+          "text": "            with open(filename, mode=\"rb\") as config_file:"
+        },
+        {
+          "line": 209,
+          "text": "                exec(compile(config_file.read(), filename, \"exec\"), d.__dict__)"
+        },
+        {
+          "line": 210,
+          "text": "        except OSError as e:"
+        },
+        {
+          "line": 211,
+          "text": "            if silent and e.errno in (errno.ENOENT, errno.EISDIR, errno.ENOTDIR):"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 15,
+      "repository": "httpx",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\httpx\\httpx\\_urls.py",
+      "line": 336,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "username=\"jo@gmail.com\", password=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "5a05d1b4e3bc1b76c1bfc1f3827fef8e240e05678af021bd115d7822f6e96dd4",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 334,
+          "text": ""
+        },
+        {
+          "line": 335,
+          "text": "        url = httpx.URL(\"https://www.example.com\").copy_with("
+        },
+        {
+          "line": 336,
+          "text": "            username=\"jo@gmail.com\", password=\"a secret\""
+        },
+        {
+          "line": 337,
+          "text": "        )"
+        },
+        {
+          "line": 338,
+          "text": "        assert url == \"https://jo%40email.com:a%20secret@www.example.com\""
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 16,
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\docs\\plugins\\main.py",
+      "line": 459,
+      "rule_id": "SEC004",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: yaml.load()",
+      "source_exists": true,
+      "source_sha256": "62a2a8c42bcd8f31b55894fb44c6d912415b04f5898d429eb752348ff1327aa7",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 457,
+          "text": "    # read people.yml file data"
+        },
+        {
+          "line": 458,
+          "text": "    with (THIS_DIR / 'people.yml').open('rb') as f:"
+        },
+        {
+          "line": 459,
+          "text": "        people = yaml.load(f, Loader=yaml.FullLoader)"
+        },
+        {
+          "line": 460,
+          "text": ""
+        },
+        {
+          "line": 461,
+          "text": "    # Render the templates"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Loader behavior, dependency version, and input trust must be assessed."
+      ]
+    },
+    {
+      "finding_number": 17,
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\deprecated\\parse.py",
+      "line": 55,
+      "rule_id": "SEC003",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: pickle.loads()",
+      "source_exists": true,
+      "source_sha256": "96b0e465a53f580f4b1a309ab044d7649c1d8cf77f71e2ebd5f527af2281265d",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 53,
+          "text": "            raise RuntimeError('Trying to decode with pickle with allow_pickle=False')"
+        },
+        {
+          "line": 54,
+          "text": "        bb = b if isinstance(b, bytes) else b.encode()  # type: ignore"
+        },
+        {
+          "line": 55,
+          "text": "        return pickle.loads(bb)"
+        },
+        {
+          "line": 56,
+          "text": "    else:"
+        },
+        {
+          "line": 57,
+          "text": "        raise TypeError(f'Unknown protocol: {proto}')"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "The trustworthiness of pickle data and caller controls must be assessed."
+      ]
+    },
+    {
+      "finding_number": 18,
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\types.py",
+      "line": 1835,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "user = User(username='scolvin', password=<REDACTED>)",
+      "source_exists": true,
+      "source_sha256": "e1f7596e35b57bdb314208714a2a638934ea19f3db5e45d727efb4729b1ea8b9",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 1833,
+          "text": "        password: SecretStr"
+        },
+        {
+          "line": 1834,
+          "text": ""
+        },
+        {
+          "line": 1835,
+          "text": "    user = User(username='scolvin', password='password1')"
+        },
+        {
+          "line": 1836,
+          "text": ""
+        },
+        {
+          "line": 1837,
+          "text": "    print(user)"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 19,
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\types.py",
+      "line": 1862,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "model = Model(password=<REDACTED>, password_bytes=b'IAmSensitiveBytes')",
+      "source_exists": true,
+      "source_sha256": "e1f7596e35b57bdb314208714a2a638934ea19f3db5e45d727efb4729b1ea8b9",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 1860,
+          "text": "            return v.get_secret_value()"
+        },
+        {
+          "line": 1861,
+          "text": ""
+        },
+        {
+          "line": 1862,
+          "text": "    model = Model(password='IAmSensitive', password_bytes=b'IAmSensitiveBytes')"
+        },
+        {
+          "line": 1863,
+          "text": "    print(model)"
+        },
+        {
+          "line": 1864,
+          "text": "    #> password=SecretStr('**********') password_bytes=SecretBytes(b'**********')"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 20,
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\v1\\parse.py",
+      "line": 42,
+      "rule_id": "SEC003",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: pickle.loads()",
+      "source_exists": true,
+      "source_sha256": "fce0eea2b14188d2adae3f0d8de67f352de3244f3cc2a0e9e69acfa3d83264fa",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 40,
+          "text": "            raise RuntimeError('Trying to decode with pickle with allow_pickle=False')"
+        },
+        {
+          "line": 41,
+          "text": "        bb = b if isinstance(b, bytes) else b.encode()"
+        },
+        {
+          "line": 42,
+          "text": "        return pickle.loads(bb)"
+        },
+        {
+          "line": 43,
+          "text": "    else:"
+        },
+        {
+          "line": 44,
+          "text": "        raise TypeError(f'Unknown protocol: {proto}')"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "The trustworthiness of pickle data and caller controls must be assessed."
+      ]
+    },
+    {
+      "finding_number": 21,
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\v1\\utils.py",
+      "line": 195,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "efc758f900ca2aa7f0b630397a8369df70c4e380003c4a2c4f095f2ecc0938af",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 193,
+          "text": "    \"\"\""
+        },
+        {
+          "line": 194,
+          "text": "    try:"
+        },
+        {
+          "line": 195,
+          "text": "        eval('__IPYTHON__')"
+        },
+        {
+          "line": 196,
+          "text": "    except NameError:"
+        },
+        {
+          "line": 197,
+          "text": "        return False"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 22,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\bench\\empty.py",
+      "line": 5,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "c60782c9c803d4e4d9156a91cba82308aebb5704466283d4f7a84773537abbab",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 3,
+          "text": ""
+        },
+        {
+          "line": 4,
+          "text": "for i in range(1000):"
+        },
+        {
+          "line": 5,
+          "text": "    exec(f\"def test_func_{i}(): pass\")"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 23,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\bench\\unit_test.py",
+      "line": 7,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "f7086ec6f4bc403bd3c85dae3a89160861dc5d9449e61de242c7c366d5482238",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 5,
+          "text": ""
+        },
+        {
+          "line": 6,
+          "text": "for i in range(15000):"
+        },
+        {
+          "line": 7,
+          "text": "    exec("
+        },
+        {
+          "line": 8,
+          "text": "        f\"\"\""
+        },
+        {
+          "line": 9,
+          "text": "class Test{i}(TestCase):"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 24,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\bench\\xunit.py",
+      "line": 5,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "37156553e05a1287def5302db9b604a6da58ea5ce2270e9fad04eacb90c58eb2",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 3,
+          "text": ""
+        },
+        {
+          "line": 4,
+          "text": "for i in range(5000):"
+        },
+        {
+          "line": 5,
+          "text": "    exec("
+        },
+        {
+          "line": 6,
+          "text": "        f\"\"\""
+        },
+        {
+          "line": 7,
+          "text": "class Test{i}:"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 25,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\doc\\en\\example\\assertion\\failure_demo.py",
+      "line": 202,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "8405603c71d6fa0c4df0ba4a14a3a3d1cbc23ddf774d4b4651df2079e04ce39e",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 200,
+          "text": "    module = importlib.util.module_from_spec(spec)"
+        },
+        {
+          "line": 201,
+          "text": "    code = compile(src, name, \"exec\")"
+        },
+        {
+          "line": 202,
+          "text": "    exec(code, module.__dict__)"
+        },
+        {
+          "line": 203,
+          "text": "    sys.modules[name] = module"
+        },
+        {
+          "line": 204,
+          "text": "    module.foo()"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 26,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\_code\\code.py",
+      "line": 175,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "dee0b7ede1b6aaef1bbaed32908966fe635bd73d88968657ef647fa7167e2a90",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 173,
+          "text": "        f_locals = self.f_locals.copy()"
+        },
+        {
+          "line": 174,
+          "text": "        f_locals.update(vars)"
+        },
+        {
+          "line": 175,
+          "text": "        return eval(code, self.f_globals, f_locals)"
+        },
+        {
+          "line": 176,
+          "text": ""
+        },
+        {
+          "line": 177,
+          "text": "    def repr(self, object: object) -> str:"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 27,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\_py\\path.py",
+      "line": 1153,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "f8af3c04ae9fd25a918f4b03d266eba3413477aeda0c8aad0c3464854a321194",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 1151,
+          "text": "                try:"
+        },
+        {
+          "line": 1152,
+          "text": "                    with open(str(self), \"rb\") as f:"
+        },
+        {
+          "line": 1153,
+          "text": "                        exec(f.read(), mod.__dict__)"
+        },
+        {
+          "line": 1154,
+          "text": "                except BaseException:"
+        },
+        {
+          "line": 1155,
+          "text": "                    del sys.modules[modname]"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 28,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\assertion\\rewrite.py",
+      "line": 179,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "b1526ca5b232eaebca6ec87ca3b448c270a86543209fd7439b44c4a63aa0e9cd",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 177,
+          "text": "        else:"
+        },
+        {
+          "line": 178,
+          "text": "            state.trace(f\"found cached rewritten pyc for {fn}\")"
+        },
+        {
+          "line": 179,
+          "text": "        exec(co, module.__dict__)"
+        },
+        {
+          "line": 180,
+          "text": ""
+        },
+        {
+          "line": 181,
+          "text": "    def _early_rewrite_bailout(self, name: str, state: AssertionState) -> bool:"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 29,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\mark\\expression.py",
+      "line": 363,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "906ad94c1c0f5bc5cf5683e130ddf150474605ce066bf0a4bb194ba6dc3960a1",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 361,
+          "text": "            matcher supports all expressions."
+        },
+        {
+          "line": 362,
+          "text": "        \"\"\""
+        },
+        {
+          "line": 363,
+          "text": "        return bool(eval(self._code, {\"__builtins__\": {}}, MatcherAdapter(matcher)))"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 30,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\pytester.py",
+      "line": 296,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "bceefcf9effcd9cc108a38f92a62c9c37901a896f6b132f3070fee62a949a2d6",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 294,
+          "text": "                if call._name == name:"
+        },
+        {
+          "line": 295,
+          "text": "                    print(\"NAMEMATCH\", name, call)"
+        },
+        {
+          "line": 296,
+          "text": "                    if eval(check, backlocals, call.__dict__):"
+        },
+        {
+          "line": 297,
+          "text": "                        print(\"CHECKERMATCH\", repr(check), \"->\", call)"
+        },
+        {
+          "line": 298,
+          "text": "                    else:"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 31,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\skipping.py",
+      "line": 119,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "285939ce7b70c74aa5c242c8fd994e81e66eeb5e9861c46dfab02ec9b5f6d3d1",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 117,
+          "text": "            filename = f\"<{mark.name} condition>\""
+        },
+        {
+          "line": 118,
+          "text": "            condition_code = compile(condition, filename, \"eval\")"
+        },
+        {
+          "line": 119,
+          "text": "            result = eval(condition_code, globals_)"
+        },
+        {
+          "line": 120,
+          "text": "        except SyntaxError as exc:"
+        },
+        {
+          "line": 121,
+          "text": "            msglines = ["
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 32,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\freeze\\create_executable.py",
+      "line": 16,
+      "rule_id": "SEC006",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: subprocess.check_call() with shell=True",
+      "source_exists": true,
+      "source_sha256": "8e405697dd6b6ffe3e88ef5b8e9303b68428822955d3a3938fbd865d4888b130",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 14,
+          "text": "    hidden.extend([\"--hidden-import\", \"distutils\"])"
+        },
+        {
+          "line": 15,
+          "text": "    args = [\"pyinstaller\", \"--noconfirm\", *hidden, \"runtests_script.py\"]"
+        },
+        {
+          "line": 16,
+          "text": "    subprocess.check_call(\" \".join(args), shell=True)"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Command construction and control of interpolated values must be assessed."
+      ]
+    },
+    {
+      "finding_number": 33,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\plugins_integration\\django_settings.py",
+      "line": 4,
+      "rule_id": "SEC008",
+      "original_severity": "HIGH",
+      "original_evidence": "SECRET_KEY=<REDACTED>",
+      "source_exists": true,
+      "source_sha256": "4dfcab74277525adfa5b48f2fbe5c65e4cca52586ba0a0f9f967c1df07673c08",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 2,
+          "text": ""
+        },
+        {
+          "line": 3,
+          "text": ""
+        },
+        {
+          "line": 4,
+          "text": "SECRET_KEY = \"mysecret\""
+        }
+      ],
+      "pattern_reproduced": false,
+      "verification_result": "PATTERN_NOT_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "The original pattern was not independently reproduced within the checked source context.",
+        "A matching assignment may be a placeholder, example, enum, or actual credential; context is required."
+      ]
+    },
+    {
+      "finding_number": 34,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\python\\collect.py",
+      "line": 1238,
+      "rule_id": "SEC002",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: exec()",
+      "source_exists": true,
+      "source_sha256": "5842cf4f8615984561dc0b2b2e29eb7c3ba90121eebe932dd5d0e7fb9137e694",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 1236,
+          "text": "        try:"
+        },
+        {
+          "line": 1237,
+          "text": "            ns: dict[str, Any] = {}"
+        },
+        {
+          "line": 1238,
+          "text": "            exec(\"def foo(): raise ValueError\", ns)"
+        },
+        {
+          "line": 1239,
+          "text": "            ns[\"foo\"]()"
+        },
+        {
+          "line": 1240,
+          "text": "        except ValueError:"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 35,
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\python\\raises_group.py",
+      "line": 1210,
+      "rule_id": "SEC001",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: eval()",
+      "source_exists": true,
+      "source_sha256": "9a6b9cfa969d1b546370b0185d838418765eae056ff5fba506052349e3051f1c",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 1208,
+          "text": "def test_raisesgroup_tostring() -> None:"
+        },
+        {
+          "line": 1209,
+          "text": "    def check_str_and_repr(s: str) -> None:"
+        },
+        {
+          "line": 1210,
+          "text": "        evaled = eval(s)"
+        },
+        {
+          "line": 1211,
+          "text": "        assert s == str(evaled) == repr(evaled)"
+        },
+        {
+          "line": 1212,
+          "text": ""
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Input provenance and caller behavior may require review."
+      ]
+    },
+    {
+      "finding_number": 36,
+      "repository": "rich",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\rich\\tools\\make_width_tables.py",
+      "line": 22,
+      "rule_id": "SEC006",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: subprocess.run() with shell=True",
+      "source_exists": true,
+      "source_sha256": "642f37cd1ac4bfb001fab5b4448d801b2c531f42aed52f2028be8b3ae0d79b50",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 20,
+          "text": "    init_file.write(init)"
+        },
+        {
+          "line": 21,
+          "text": ""
+        },
+        {
+          "line": 22,
+          "text": "subprocess.run(f\"black {path}\", shell=True)"
+        },
+        {
+          "line": 23,
+          "text": ""
+        },
+        {
+          "line": 24,
+          "text": ""
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Command construction and control of interpolated values must be assessed."
+      ]
+    },
+    {
+      "finding_number": 37,
+      "repository": "rich",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\rich\\tools\\make_width_tables.py",
+      "line": 53,
+      "rule_id": "SEC006",
+      "original_severity": "HIGH",
+      "original_evidence": "Call detected: subprocess.run() with shell=True",
+      "source_exists": true,
+      "source_sha256": "642f37cd1ac4bfb001fab5b4448d801b2c531f42aed52f2028be8b3ae0d79b50",
+      "reported_line_exists": true,
+      "source_context": [
+        {
+          "line": 51,
+          "text": "        file_out.write(table_file)"
+        },
+        {
+          "line": 52,
+          "text": ""
+        },
+        {
+          "line": 53,
+          "text": "    subprocess.run(f\"black {path}\", shell=True)"
+        }
+      ],
+      "pattern_reproduced": true,
+      "verification_result": "PATTERN_REPRODUCED",
+      "security_impact": "Not established by pattern verification",
+      "confirmed_vulnerability": null,
+      "limitations": [
+        "Pattern presence does not establish exploitability.",
+        "Command construction and control of interpolated values must be assessed."
+      ]
+    }
+  ]
+}

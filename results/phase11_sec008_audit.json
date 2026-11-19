@@ -1,0 +1,53 @@
+{
+    "phase": 11,
+    "section": "SEC008 Secret-like Findings Audit",
+    "total_findings_inspected": 10,
+    "classifications": {
+        "likely_false_positive": 6,
+        "context_dependent": 4,
+        "confirmed_vulnerability": 0
+    },
+    "findings": [
+        {
+            "finding": "FastAPI SECRET_KEY examples",
+            "count": 4,
+            "classification": "context_dependent",
+            "reason": "Documentation examples use a fixed signing key. It must not be reused in production."
+        },
+        {
+            "finding": "FastAPI apiKey enum",
+            "count": 1,
+            "classification": "likely_false_positive",
+            "reason": "OpenAPI security scheme enum, not a credential."
+        },
+        {
+            "finding": "Flask development key",
+            "count": 1,
+            "classification": "likely_false_positive",
+            "reason": "Development configuration example in documentation."
+        },
+        {
+            "finding": "HTTPX username and password",
+            "count": 1,
+            "classification": "likely_false_positive",
+            "reason": "Documentation example demonstrating URL credentials."
+        },
+        {
+            "finding": "Pydantic password examples",
+            "count": 2,
+            "classification": "likely_false_positive",
+            "reason": "Documentation examples demonstrating secret types."
+        },
+        {
+            "finding": "Pytest mysecret",
+            "count": 1,
+            "classification": "likely_false_positive",
+            "reason": "Test configuration value."
+        }
+    ],
+    "limitations": [
+        "Classifications are based on the inspected source context.",
+        "No live credential validation was performed.",
+        "The FastAPI sample key should not be used in production."
+    ]
+}

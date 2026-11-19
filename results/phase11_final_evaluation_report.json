@@ -1,0 +1,821 @@
+{
+    "project": "AI Software Engineering Agent",
+    "phase": 11,
+    "report_title": "Reliability and Evaluation - Final Report",
+    "generated_at": "2026-11-17T16:18:59",
+    "overall_status": "Completed with documented limitations",
+    "evaluation_summary": {
+        "security_audit": "Completed; potential findings manually inspected",
+        "retrieval": "Completed; six-query manual relevance benchmark",
+        "code_review": "Completed; source-grounded review inspected",
+        "testing": "Completed; 11 configured tests passed",
+        "integrated_regression": "Completed; all four agents completed"
+    },
+    "key_metrics": {
+        "retrieval_queries": 6,
+        "retrieved_chunks": 30,
+        "relevant_chunks": 13,
+        "precision_at_3": 0.6111,
+        "precision_at_5": 0.4333,
+        "mean_reciprocal_rank": 0.8333,
+        "configured_tests_passed": 11,
+        "configured_tests_failed": 0,
+        "integrated_regression_status": "completed"
+    },
+    "important_limitations": [
+        "Retrieval metrics are based on six manually judged queries, not an exhaustive benchmark.",
+        "Code-review evaluation is limited and requires human verification.",
+        "Security pattern matches are not confirmed vulnerabilities.",
+        "Passing tests validate only the behaviors covered by the configured tests.",
+        "The integrated regression does not prove the entire system is bug-free."
+    ],
+    "supporting_reports": {
+        "security_audit": "phase11_final_security_audit.json",
+        "retrieval_evaluation": "phase11_retrieval_evaluation.json",
+        "code_review_evaluation": "phase11_code_review_evaluation.json",
+        "testing_evaluation": "phase11_testing_agent_evaluation.json",
+        "integrated_regression": "phase11_integrated_regression.json"
+    },
+    "detailed_evaluations": {
+        "security_audit": {
+            "project": "AI Software Engineering Agent",
+            "phase": 11,
+            "report_title": "Consolidated Security Audit and Evaluation",
+            "generated_at": "2026-11-17T15:32:42",
+            "overall_status": "All 37 Phase 9 findings and 11 Phase 10 findings have been inspected and preliminarily classified; context-dependent findings require further security verification.",
+            "scan_summary": {
+                "phase9_findings": 37,
+                "phase10_findings": 11,
+                "total_scan_observations": 48,
+                "unique_vulnerabilities_confirmed": 0
+            },
+            "phase9_audit": {
+                "scan_findings": 37,
+                "inspected_findings": 37,
+                "classifications": {
+                    "context_dependent": 24,
+                    "likely_false_positive": 13,
+                    "awaiting_classification_record_verification": 0,
+                    "confirmed_vulnerability": 0
+                },
+                "rule_breakdown": {
+                    "SEC001": {
+                        "total": 10,
+                        "context_dependent": 8,
+                        "likely_false_positive": 2
+                    },
+                    "SEC002": {
+                        "total": 8,
+                        "context_dependent": 3,
+                        "likely_false_positive": 5
+                    },
+                    "SEC003": {
+                        "total": 5,
+                        "context_dependent": 5
+                    },
+                    "SEC004": {
+                        "total": 1,
+                        "context_dependent": 1
+                    },
+                    "SEC006": {
+                        "total": 3,
+                        "context_dependent": 3
+                    },
+                    "SEC008": {
+                        "total": 10,
+                        "context_dependent": 4,
+                        "likely_false_positive": 6
+                    }
+                }
+            },
+            "phase10_audit": {
+                "scan_type": "Scoped Python source pattern scan",
+                "files_scanned": 37,
+                "parse_failures": 0,
+                "scan_findings": 11,
+                "inspected_findings": 11,
+                "classifications": {
+                    "likely_false_positive_in_inspected_test_context": 11,
+                    "context_dependent": 0,
+                    "confirmed_vulnerability": 0
+                },
+                "rule_breakdown": {
+                    "SEC003_pickle": {
+                        "total": 7,
+                        "classification": "likely_false_positive_in_inspected_test_context"
+                    },
+                    "SEC006_tls_verify_false": {
+                        "total": 4,
+                        "classification": "likely_false_positive_in_inspected_test_context"
+                    }
+                },
+                "additional_test": {
+                    "file": "requests/tests/test_requests.py",
+                    "line": 3093,
+                    "result": "PASSED",
+                    "match": true
+                }
+            },
+            "important_interpretation": [
+                "Phase 9 and Phase 10 are separate scans with different scopes.",
+                "The 48 observations must not be interpreted as 48 unique vulnerabilities.",
+                "Context-dependent findings require further verification.",
+                "Likely false-positive classifications apply only to the inspected source contexts.",
+                "No confirmed vulnerability was established by these inspections.",
+                "SEC001 and SEC002 source contexts were inspected, but their individual classifications require verification against saved evidence."
+            ],
+            "limitations": [
+                "The security scanner uses source-pattern detection.",
+                "No comprehensive penetration testing was performed.",
+                "No exploit testing was performed.",
+                "A source-context inspection cannot prove that an entire repository is secure.",
+                "The audit does not guarantee the absence of undiscovered vulnerabilities."
+            ],
+            "supporting_files": [
+                "phase9_static_security_findings.json",
+                "phase10_live_validation.json",
+                "phase11_sec008_audit.json",
+                "phase11_sec003_sec006_audit.json",
+                "phase11_phase10_additional_finding_audit.json",
+                "phase11_sec001_sec002_audit.json"
+            ]
+        },
+        "retrieval_evaluation": {
+            "phase": 11,
+            "title": "Retrieval Evaluation",
+            "evaluation_date": "2026-11-17T15:44:21",
+            "dataset_size": 30650,
+            "benchmark_query_count": 6,
+            "total_retrieved_chunks": 30,
+            "total_relevant_chunks": 13,
+            "metrics": {
+                "mean_precision_at_3": 0.6111,
+                "mean_precision_at_5": 0.4333,
+                "mean_reciprocal_rank": 0.8333
+            },
+            "relevance_criteria": {
+                "1": "Directly relevant to answering the query",
+                "0": "Not directly relevant or only partially related"
+            },
+            "methodology": "Six benchmark queries were evaluated. The top five retrieved chunks for each query were manually inspected and assigned binary relevance labels.",
+            "limitations": [
+                "The benchmark contains only six queries.",
+                "Relevance judgments cover only the top five retrieved chunks.",
+                "Recall was not calculated because an exhaustive relevant-chunk ground-truth set was not established.",
+                "Results represent an exploratory evaluation, not a complete measurement of retrieval quality across the entire dataset."
+            ],
+            "query_results": [
+                {
+                    "query_id": "Q1",
+                    "query": "How does the Requests library send an HTTP request?",
+                    "relevant_chunks": 3,
+                    "precision_at_3": 0.6667,
+                    "precision_at_5": 0.6,
+                    "first_relevant_rank": 1,
+                    "reciprocal_rank": 1.0,
+                    "retrieved_chunks": [
+                        {
+                            "rank": 1,
+                            "chunk_id": "requests_000023",
+                            "name": "request",
+                            "chunk_type": "function",
+                            "repository": "requests",
+                            "file_path": "src\\requests\\api.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 2,
+                            "chunk_id": "requests_000203",
+                            "name": "send",
+                            "chunk_type": "method",
+                            "repository": "requests",
+                            "file_path": "src\\requests\\sessions.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 3,
+                            "chunk_id": "requests_000215",
+                            "name": "request",
+                            "chunk_type": "method",
+                            "repository": "requests",
+                            "file_path": "src\\requests\\sessions.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 4,
+                            "chunk_id": "requests_000223",
+                            "name": "send",
+                            "chunk_type": "method",
+                            "repository": "requests",
+                            "file_path": "src\\requests\\sessions.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 5,
+                            "chunk_id": "requests_000005",
+                            "name": "send",
+                            "chunk_type": "method",
+                            "repository": "requests",
+                            "file_path": "src\\requests\\adapters.py",
+                            "relevance": 0
+                        }
+                    ]
+                },
+                {
+                    "query_id": "Q2",
+                    "query": "How does HTTPX implement its top-level request function?",
+                    "relevant_chunks": 3,
+                    "precision_at_3": 1.0,
+                    "precision_at_5": 0.6,
+                    "first_relevant_rank": 1,
+                    "reciprocal_rank": 1.0,
+                    "retrieved_chunks": [
+                        {
+                            "rank": 1,
+                            "chunk_id": "httpx_015003",
+                            "name": "request",
+                            "chunk_type": "function",
+                            "repository": "httpx",
+                            "file_path": "httpx\\_api.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 2,
+                            "chunk_id": "httpx_015087",
+                            "name": "request",
+                            "chunk_type": "method",
+                            "repository": "httpx",
+                            "file_path": "httpx\\_client.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 3,
+                            "chunk_id": "httpx_015108",
+                            "name": "request",
+                            "chunk_type": "method",
+                            "repository": "httpx",
+                            "file_path": "httpx\\_client.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 4,
+                            "chunk_id": "httpx_015204",
+                            "name": "request",
+                            "chunk_type": "method",
+                            "repository": "httpx",
+                            "file_path": "httpx\\_exceptions.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 5,
+                            "chunk_id": "httpx_015205",
+                            "name": "request",
+                            "chunk_type": "method",
+                            "repository": "httpx",
+                            "file_path": "httpx\\_exceptions.py",
+                            "relevance": 0
+                        }
+                    ]
+                },
+                {
+                    "query_id": "Q3",
+                    "query": "How does Flask register a route handler?",
+                    "relevant_chunks": 2,
+                    "precision_at_3": 0.6667,
+                    "precision_at_5": 0.4,
+                    "first_relevant_rank": 1,
+                    "reciprocal_rank": 1.0,
+                    "retrieved_chunks": [
+                        {
+                            "rank": 1,
+                            "chunk_id": "flask_001155",
+                            "name": "route",
+                            "chunk_type": "method",
+                            "repository": "flask",
+                            "file_path": "src\\flask\\sansio\\scaffold.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 2,
+                            "chunk_id": "flask_001156",
+                            "name": "add_url_rule",
+                            "chunk_type": "method",
+                            "repository": "flask",
+                            "file_path": "src\\flask\\sansio\\scaffold.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 3,
+                            "chunk_id": "flask_000773",
+                            "name": "send_static_file",
+                            "chunk_type": "method",
+                            "repository": "flask",
+                            "file_path": "src\\flask\\app.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 4,
+                            "chunk_id": "flask_000808",
+                            "name": "send_static_file",
+                            "chunk_type": "method",
+                            "repository": "flask",
+                            "file_path": "src\\flask\\blueprints.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 5,
+                            "chunk_id": "flask_000794",
+                            "name": "url_for",
+                            "chunk_type": "method",
+                            "repository": "flask",
+                            "file_path": "src\\flask\\app.py",
+                            "relevance": 0
+                        }
+                    ]
+                },
+                {
+                    "query_id": "Q4",
+                    "query": "How does FastAPI process an incoming request?",
+                    "relevant_chunks": 1,
+                    "precision_at_3": 0.3333,
+                    "precision_at_5": 0.2,
+                    "first_relevant_rank": 2,
+                    "reciprocal_rank": 0.5,
+                    "retrieved_chunks": [
+                        {
+                            "rank": 1,
+                            "chunk_id": "fastapi_002481",
+                            "name": "FastAPI",
+                            "chunk_type": "class",
+                            "repository": "fastapi",
+                            "file_path": "fastapi\\applications.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 2,
+                            "chunk_id": "fastapi_002503",
+                            "name": "middleware",
+                            "chunk_type": "method",
+                            "repository": "fastapi",
+                            "file_path": "fastapi\\applications.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 3,
+                            "chunk_id": "fastapi_002875",
+                            "name": "OAuth2PasswordRequestForm",
+                            "chunk_type": "class",
+                            "repository": "fastapi",
+                            "file_path": "fastapi\\security\\oauth2.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 4,
+                            "chunk_id": "fastapi_002851",
+                            "name": "APIKeyHeader",
+                            "chunk_type": "class",
+                            "repository": "fastapi",
+                            "file_path": "fastapi\\security\\api_key.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 5,
+                            "chunk_id": "fastapi_002528",
+                            "name": "__init__",
+                            "chunk_type": "method",
+                            "repository": "fastapi",
+                            "file_path": "fastapi\\exceptions.py",
+                            "relevance": 0
+                        }
+                    ]
+                },
+                {
+                    "query_id": "Q5",
+                    "query": "How does Pydantic validate model data?",
+                    "relevant_chunks": 3,
+                    "precision_at_3": 0.6667,
+                    "precision_at_5": 0.6,
+                    "first_relevant_rank": 2,
+                    "reciprocal_rank": 0.5,
+                    "retrieved_chunks": [
+                        {
+                            "rank": 1,
+                            "chunk_id": "pydantic_008905",
+                            "name": "data",
+                            "chunk_type": "method",
+                            "repository": "pydantic",
+                            "file_path": "pydantic-core\\python\\pydantic_core\\core_schema.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 2,
+                            "chunk_id": "pydantic_007203",
+                            "name": "model_validate_strings",
+                            "chunk_type": "method",
+                            "repository": "pydantic",
+                            "file_path": "pydantic\\main.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 3,
+                            "chunk_id": "pydantic_007201",
+                            "name": "model_validate",
+                            "chunk_type": "method",
+                            "repository": "pydantic",
+                            "file_path": "pydantic\\main.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 4,
+                            "chunk_id": "pydantic_007229",
+                            "name": "validate",
+                            "chunk_type": "method",
+                            "repository": "pydantic",
+                            "file_path": "pydantic\\main.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 5,
+                            "chunk_id": "pydantic_008906",
+                            "name": "field_name",
+                            "chunk_type": "method",
+                            "repository": "pydantic",
+                            "file_path": "pydantic-core\\python\\pydantic_core\\core_schema.py",
+                            "relevance": 0
+                        }
+                    ]
+                },
+                {
+                    "query_id": "Q6",
+                    "query": "How does pytest execute a test function?",
+                    "relevant_chunks": 1,
+                    "precision_at_3": 0.3333,
+                    "precision_at_5": 0.2,
+                    "first_relevant_rank": 1,
+                    "reciprocal_rank": 1.0,
+                    "retrieved_chunks": [
+                        {
+                            "rank": 1,
+                            "chunk_id": "pytest_017409",
+                            "name": "runtest",
+                            "chunk_type": "method",
+                            "repository": "pytest",
+                            "file_path": "src\\_pytest\\python.py",
+                            "relevance": 1
+                        },
+                        {
+                            "rank": 2,
+                            "chunk_id": "pytest_017391",
+                            "name": "Metafunc",
+                            "chunk_type": "class",
+                            "repository": "pytest",
+                            "file_path": "src\\_pytest\\python.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 3,
+                            "chunk_id": "pytest_020455",
+                            "name": "test_passfunction",
+                            "chunk_type": "method",
+                            "repository": "pytest",
+                            "file_path": "testing\\test_runner.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 4,
+                            "chunk_id": "pytest_021191",
+                            "name": "h",
+                            "chunk_type": "function",
+                            "repository": "pytest",
+                            "file_path": "testing\\code\\test_excinfo.py",
+                            "relevance": 0
+                        },
+                        {
+                            "rank": 5,
+                            "chunk_id": "pytest_020318",
+                            "name": "test_assert_outcomes_after_pytest_error",
+                            "chunk_type": "function",
+                            "repository": "pytest",
+                            "file_path": "testing\\test_pytester.py",
+                            "relevance": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        "code_review_evaluation": {
+            "phase": "Phase 11 - Code Review Agent Evaluation",
+            "evaluation_date": "2026-11-17T15:47:13",
+            "source_report": "results/phase10_live_validation.json",
+            "repository": "requests",
+            "query_context": "Explain the requests.get to request call flow",
+            "source_chunks_reviewed": 2,
+            "claims_reviewed": [
+                {
+                    "claim": "requests.get delegates to request",
+                    "result": "supported",
+                    "evidence": "src/requests/api.py, lines 74-87"
+                },
+                {
+                    "claim": "request delegates to session.request",
+                    "result": "supported",
+                    "evidence": "src/requests/api.py, lines 24-71"
+                },
+                {
+                    "claim": "Reported function locations are correct",
+                    "result": "supported",
+                    "evidence": "Both function definitions match the reported locations"
+                },
+                {
+                    "claim": "Inside request, the request function is called",
+                    "result": "imprecise",
+                    "evidence": "get() calls request(); request() then calls session.request()"
+                }
+            ],
+            "supported_claims": 3,
+            "imprecise_or_incorrect_claims": 1,
+            "unsupported_claims": 0,
+            "claim_support_rate": 0.75,
+            "issue_assessment": {
+                "agent_statement": "No issues are identified based on the provided snippets.",
+                "assessment": "appropriately_scoped",
+                "reason": "The agent reviewed only two supplied chunks; this does not establish that the entire repository is bug-free."
+            },
+            "overall_assessment": "The call-flow explanation is substantially correct and source-supported, with one minor wording error. This is a small manual evaluation and does not establish overall bug-detection accuracy.",
+            "limitations": [
+                "Only one query was evaluated.",
+                "Only two source chunks were reviewed.",
+                "No comprehensive bug-detection benchmark was performed.",
+                "Claim support rate is not a general code-review precision metric."
+            ],
+            "integrated_regression_followup": {
+                "query": "Explain how requests.get delegates to request",
+                "status": "completed",
+                "source_chunks_reviewed": 2,
+                "observation": "The main call-flow explanation was correct, but the final statement imprecisely described request() as delegating to itself. The actual flow is get() -> request() -> session.request().",
+                "human_verification_required": true
+            }
+        },
+        "testing_evaluation": {
+            "phase": 11,
+            "title": "Testing Agent and Test Candidate Quality Evaluation",
+            "evaluated_at": "2026-11-17T16:12:25",
+            "test_execution": {
+                "execution_type": "Live pytest execution",
+                "tests_executed": 11,
+                "passed": 11,
+                "failed": 0,
+                "errors": 0,
+                "skipped": 0,
+                "exit_code": 0,
+                "execution_time_seconds": 0.26,
+                "status": "passed"
+            },
+            "test_files": [
+                "notebooks/test_phase8_generated.py",
+                "notebooks/test_phase8_api_wrappers.py",
+                "notebooks/test_phase8_corrected_wrappers.py"
+            ],
+            "source_verification": {
+                "extracted_requests_source_used": true,
+                "source_path": "data/raw_repositories/requests/src/requests",
+                "explicit_import_assertions_added": true,
+                "wrapper_mock_restoration_improved": true
+            },
+            "candidate_audit_followup": {
+                "original_candidates_reviewed": 2,
+                "incorrect_typeerror_expectation": "Removed from inspected test files",
+                "unverified_none_url_expectation": "Not tested; remains an evaluation gap",
+                "incorrect_valueerror_expectation": "Removed from inspected test files",
+                "missing_url_exception_message": "Not tested; remains an evaluation gap",
+                "missing_response_import": "Original issue avoided by using Mock",
+                "overall_assessment": "Original problematic expectations were not retained in the inspected tests. Two exception scenarios remain untested."
+            },
+            "quality_assessment": {
+                "execution_reliability": "Verified for the 11 selected tests",
+                "production_source_alignment": "Verified through explicit import-path assertions",
+                "test_isolation": "Improved using patch.object in the API wrapper tests",
+                "comprehensive_test_generation_quality": "Not established",
+                "limitations": [
+                    "Only 11 tests were executed.",
+                    "Two previously flagged exception scenarios remain untested.",
+                    "Passing tests do not prove complete functional correctness.",
+                    "The evaluation covers selected Requests functions and adapter behavior, not all generated candidates."
+                ]
+            },
+            "overall_status": "Selected test suite validated; candidate-quality evaluation has remaining coverage gaps."
+        },
+        "integrated_regression": {
+            "phase": 11,
+            "query": "Explain how requests.get delegates to request",
+            "repository_filter": "requests",
+            "overall_status": "completed",
+            "agents": {
+                "retrieval": {
+                    "status": "completed",
+                    "results_count": 2,
+                    "results": [
+                        {
+                            "score": 1.3,
+                            "repository": "requests",
+                            "file_name": "api.py",
+                            "file_path": "src\\requests\\api.py",
+                            "chunk_type": "function",
+                            "name": "request",
+                            "line_start": 24,
+                            "line_end": 71,
+                            "code": "def request(\n    method: str, url: _t.UriType, **kwargs: Unpack[_t.RequestKwargs]\n) -> Response:\n    \"\"\"Constructs and sends a :class:`Request <Request>`.\n\n    :param method: method for the new :class:`Request` object: ``GET``, ``OPTIONS``, ``HEAD``, ``POST``, ``PUT``, ``PATCH``, or ``DELETE``.\n    :param url: URL for the new :class:`Request` object.\n    :param params: (optional) Dictionary, list of tuples or bytes to send\n        in the query string for the :class:`Request`.\n    :param data: (optional) Dictionary, list of tuples, bytes, or file-like\n        object to send in the body of the :class:`Request`.\n    :param json: (optional) A JSON serializable Python object to send in the body of the :class:`Request`.\n    :param headers: (optional) Dictionary of HTTP Headers to send with the :class:`Request`.\n    :param cookies: (optional) Dict or CookieJar object to send with the :class:`Request`.\n    :param files: (optional) Dictionary of ``'name': file-like-objects`` (or ``{'name': file-tuple}``) for multipart encoding upload.\n        ``file-tuple`` can be a 2-tuple ``('filename', fileobj)``, 3-tuple ``('filename', fileobj, 'content_type')``\n        or a 4-tuple ``('filename', fileobj, 'content_type', custom_headers)``, where ``'content_type'`` is a string\n        defining the content type of the given file and ``custom_headers`` a dict-like object containing additional headers\n        to add for the file.\n    :param auth: (optional) Auth tuple to enable Basic/Digest/Custom HTTP Auth.\n    :param timeout: (optional) How many seconds to wait for the server to send data\n        before giving up, as a float, or a :ref:`(connect timeout, read\n        timeout) <timeouts>` tuple.\n    :type timeout: float or tuple\n    :param allow_redirects: (optional) Boolean. Enable/disable GET/OPTIONS/POST/PUT/PATCH/DELETE/HEAD redirection. Defaults to ``True``.\n    :type allow_redirects: bool\n    :param proxies: (optional) Dictionary mapping protocol to the URL of the proxy.\n    :param verify: (optional) Either a boolean, in which case it controls whether we verify\n            the server's TLS certificate, or a string, in which case it must be a path\n            to a CA bundle to use. Defaults to ``True``.\n    :param stream: (optional) if ``False``, the response content will be immediately downloaded.\n    :param cert: (optional) if String, path to ssl client cert file (.pem). If Tuple, ('cert', 'key') pair.\n    :return: :class:`Response <Response>` object\n    :rtype: requests.Response\n\n    Usage::\n\n      >>> import requests\n      >>> req = requests.request('GET', 'https://httpbin.org/get')\n      >>> req\n      <Response [200]>\n    \"\"\"\n\n    # By using the 'with' statement we are sure the session is closed, thus we\n    # avoid leaving sockets open which can trigger a ResourceWarning in some\n    # cases, and look like a memory leak in others.\n    with sessions.Session() as session:\n        return session.request(method=method, url=url, **kwargs)",
+                            "chunk_id": "requests_000023"
+                        },
+                        {
+                            "score": 1.3,
+                            "repository": "requests",
+                            "file_name": "api.py",
+                            "file_path": "src\\requests\\api.py",
+                            "chunk_type": "function",
+                            "name": "get",
+                            "line_start": 74,
+                            "line_end": 87,
+                            "code": "def get(\n    url: _t.UriType, params: _t.ParamsType = None, **kwargs: Unpack[_t.GetKwargs]\n) -> Response:\n    r\"\"\"Sends a GET request.\n\n    :param url: URL for the new :class:`Request` object.\n    :param params: (optional) Dictionary, list of tuples or bytes to send\n        in the query string for the :class:`Request`.\n    :param \\*\\*kwargs: Optional arguments that ``request`` takes.\n    :return: :class:`Response <Response>` object\n    :rtype: requests.Response\n    \"\"\"\n\n    return request(\"get\", url, params=params, **kwargs)",
+                            "chunk_id": "requests_000024"
+                        }
+                    ]
+                },
+                "code_review": {
+                    "status": "completed",
+                    "response": "A. Verified call flow\n\nThe `requests.get` function delegates to the `request` function within the `requests` library. Specifically, the `requests.get` function calls the `request` function with the method set to \"get\" and the URL passed as arguments. This is done in the `requests.api.get` function, which is defined as:\n\n```python\ndef get(\n    url: _t.UriType, params: _t.ParamsType = None, **kwargs: Unpack[_t.GetKwargs]\n) -> Response:\n    r\"\"\"Sends a GET request.\n\n    :param url: URL for the new :class:`Request` object.\n    :param params: (optional) Dictionary, list of tuples or bytes to send\n        in the query string for the :class:`Request`.\n    :param \\*\\*kwargs: Optional arguments that ``request`` takes.\n    :return: :class:`Response <Response>` object\n    :rtype: requests.Response\n    \"\"\"\n\n    return request(\"get\", url, params=params, **kwargs)\n```\n\nB. Confirmed observations with source locations\n\n- The `requests.get` function is defined in `src\\requests\\api.py` on line 74.\n- The `request` function is defined in `src\\requests\\api.py` on lines 24-71.\n\nC. Confirmed issues, or none identified\n\n- There are no identified issues based on the provided snippets.\n- The `request` function delegates to the `request` function within the `requests` library, ensuring that the `get` function is correctly implemented and that the `request` function is called with the appropriate method and URL parameters.",
+                    "source_chunks_reviewed": 2,
+                    "verification_note": "LLM claims still require human verification."
+                },
+                "security": {
+                    "status": "completed",
+                    "source_root": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories",
+                    "new_scan_performed": true,
+                    "scan_type": "Scoped Python source pattern scan",
+                    "files_scanned": 37,
+                    "files_parse_failed": 0,
+                    "potential_findings_total": 11,
+                    "findings_returned": 11,
+                    "findings": [
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 1550,
+                            "rule_id": "SEC003",
+                            "severity": "HIGH",
+                            "evidence": "assert pickle.loads(pickle.dumps(r.request))",
+                            "description": "Pickle deserialization can execute code for untrusted input.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 1554,
+                            "rule_id": "SEC003",
+                            "severity": "HIGH",
+                            "evidence": "pr = pickle.loads(pickle.dumps(r))",
+                            "description": "Pickle deserialization can execute code for untrusted input.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 1562,
+                            "rule_id": "SEC003",
+                            "severity": "HIGH",
+                            "evidence": "r = pickle.loads(pickle.dumps(p))",
+                            "description": "Pickle deserialization can execute code for untrusted input.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 1578,
+                            "rule_id": "SEC003",
+                            "severity": "HIGH",
+                            "evidence": "r = pickle.loads(pickle.dumps(p))",
+                            "description": "Pickle deserialization can execute code for untrusted input.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 1593,
+                            "rule_id": "SEC003",
+                            "severity": "HIGH",
+                            "evidence": "r = pickle.loads(pickle.dumps(p))",
+                            "description": "Pickle deserialization can execute code for untrusted input.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 1623,
+                            "rule_id": "SEC003",
+                            "severity": "HIGH",
+                            "evidence": "s = pickle.loads(pickle.dumps(s))",
+                            "description": "Pickle deserialization can execute code for untrusted input.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 2949,
+                            "rule_id": "SEC006",
+                            "severity": "MEDIUM",
+                            "evidence": "r1 = s.get(url, verify=False)",
+                            "description": "TLS certificate verification appears disabled.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 2982,
+                            "rule_id": "SEC006",
+                            "severity": "MEDIUM",
+                            "evidence": "r1 = s.get(url, verify=False)",
+                            "description": "TLS certificate verification appears disabled.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 3015,
+                            "rule_id": "SEC006",
+                            "severity": "MEDIUM",
+                            "evidence": "r1 = s.get(url, verify=False)",
+                            "description": "TLS certificate verification appears disabled.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 3055,
+                            "rule_id": "SEC006",
+                            "severity": "MEDIUM",
+                            "evidence": "r1 = s.get(url, verify=False, cert=cert)",
+                            "description": "TLS certificate verification appears disabled.",
+                            "assessment": "Potential finding; requires human verification."
+                        },
+                        {
+                            "repository": "requests",
+                            "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\requests\\tests\\test_requests.py",
+                            "line": 3093,
+                            "rule_id": "SEC003",
+                            "severity": "HIGH",
+                            "evidence": "deserialized_error = pickle.loads(pickle.dumps(json_decode_error))",
+                            "description": "Pickle deserialization can execute code for untrusted input.",
+                            "assessment": "Potential finding; requires human verification."
+                        }
+                    ],
+                    "scan_errors": [],
+                    "limitations": [
+                        "Pattern matching is not a complete security audit.",
+                        "Findings may be false positives and require human review.",
+                        "This scan does not detect every vulnerability or prove code is secure."
+                    ]
+                },
+                "testing": {
+                    "status": "passed",
+                    "source": "Live pytest execution",
+                    "tests_executed_now": true,
+                    "command": [
+                        "C:\\Users\\Tushti Gupta\\anaconda3\\python.exe",
+                        "-m",
+                        "pytest",
+                        "-q",
+                        "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\notebooks\\test_phase8_generated.py",
+                        "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\notebooks\\test_phase8_api_wrappers.py",
+                        "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\notebooks\\test_phase8_corrected_wrappers.py"
+                    ],
+                    "exit_code": 0,
+                    "passed": 11,
+                    "failed": 0,
+                    "skipped": 0,
+                    "errors": 0,
+                    "stdout": "\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m                                                              [100%]\u001b[0m\n\u001b[32m\u001b[32m\u001b[1m11 passed\u001b[0m\u001b[32m in 0.31s\u001b[0m\u001b[0m\n",
+                    "stderr": "",
+                    "historical_report_status": "Core workflow validated",
+                    "historical_candidate_quality_audit": {
+                        "status": "Issues identified",
+                        "audit_file": "phase8_candidate_audit.json",
+                        "candidates_reviewed": 2,
+                        "requires_correction_before_execution": true
+                    },
+                    "limitations": [
+                        "Passing tests validate only the behaviors they cover.",
+                        "The Phase 8 report previously flagged candidate-quality issues; passing tests do not resolve untested candidates."
+                    ]
+                }
+            },
+            "limitations": [
+                "Security pattern matches are potential findings, not confirmed vulnerabilities.",
+                "The security scan covers extracted Python source under data/raw_repositories, not every dependency or runtime behavior.",
+                "Pytest results cover only the three configured Phase 8 test files.",
+                "AI-generated code-review claims still require human verification."
+            ],
+            "evaluation_type": "Integrated regression test",
+            "executed_at": "2026-11-17T16:16:15"
+        }
+    }
+}

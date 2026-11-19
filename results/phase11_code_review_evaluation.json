@@ -1,0 +1,46 @@
+{
+    "phase": "Phase 11 - Code Review Agent Evaluation",
+    "evaluation_date": "2026-11-17T15:47:13",
+    "source_report": "results/phase10_live_validation.json",
+    "repository": "requests",
+    "query_context": "Explain the requests.get to request call flow",
+    "source_chunks_reviewed": 2,
+    "claims_reviewed": [
+        {
+            "claim": "requests.get delegates to request",
+            "result": "supported",
+            "evidence": "src/requests/api.py, lines 74-87"
+        },
+        {
+            "claim": "request delegates to session.request",
+            "result": "supported",
+            "evidence": "src/requests/api.py, lines 24-71"
+        },
+        {
+            "claim": "Reported function locations are correct",
+            "result": "supported",
+            "evidence": "Both function definitions match the reported locations"
+        },
+        {
+            "claim": "Inside request, the request function is called",
+            "result": "imprecise",
+            "evidence": "get() calls request(); request() then calls session.request()"
+        }
+    ],
+    "supported_claims": 3,
+    "imprecise_or_incorrect_claims": 1,
+    "unsupported_claims": 0,
+    "claim_support_rate": 0.75,
+    "issue_assessment": {
+        "agent_statement": "No issues are identified based on the provided snippets.",
+        "assessment": "appropriately_scoped",
+        "reason": "The agent reviewed only two supplied chunks; this does not establish that the entire repository is bug-free."
+    },
+    "overall_assessment": "The call-flow explanation is substantially correct and source-supported, with one minor wording error. This is a small manual evaluation and does not establish overall bug-detection accuracy.",
+    "limitations": [
+        "Only one query was evaluated.",
+        "Only two source chunks were reviewed.",
+        "No comprehensive bug-detection benchmark was performed.",
+        "Claim support rate is not a general code-review precision metric."
+    ]
+}

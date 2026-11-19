@@ -1,0 +1,13 @@
+{
+  "phase": 10,
+  "test": "Evidence-grounded code review",
+  "checks": {
+    "review_completed": true,
+    "get_function_referenced": false,
+    "request_function_referenced": false,
+    "no_confirmed_issue_claimed": true,
+    "downstream_evidence_gap_acknowledged": true
+  },
+  "all_checks_passed": false,
+  "note": "This validates expected review content, not the factual accuracy of every LLM-generated statement."
+}

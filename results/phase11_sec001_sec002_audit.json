@@ -1,0 +1,161 @@
+{
+    "phase": 11,
+    "section": "SEC001 and SEC002 Source Inspection Audit",
+    "total_findings_inspected": 18,
+    "classifications": {
+        "context_dependent": 11,
+        "likely_false_positive": 7,
+        "confirmed_vulnerability": 0
+    },
+    "findings": [
+        {
+            "rule": "SEC001",
+            "repository": "black",
+            "file": "src/blib2to3/pgen2/conv.py",
+            "line": 186,
+            "classification": "context_dependent",
+            "reason": "Evaluates grammar-file content; verify the source and integrity of the grammar input."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "black",
+            "file": "src/blib2to3/pgen2/conv.py",
+            "line": 212,
+            "classification": "context_dependent",
+            "reason": "Evaluates grammar-file content; verify the source and integrity of the grammar input."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "black",
+            "file": "src/blib2to3/pgen2/pgen.py",
+            "line": 100,
+            "classification": "context_dependent",
+            "reason": "Evaluates a grammar label; input trust requires verification."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "flask",
+            "file": "src/flask/cli.py",
+            "line": 1023,
+            "classification": "context_dependent",
+            "reason": "Executes the configured PYTHONSTARTUP script; startup-script trust matters."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "pydantic",
+            "file": "pydantic/v1/utils.py",
+            "line": 195,
+            "classification": "likely_false_positive",
+            "reason": "Uses eval('__IPYTHON__') to detect IPython, with NameError handling."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "pytest",
+            "file": "src/_pytest/_code/code.py",
+            "line": 175,
+            "classification": "context_dependent",
+            "reason": "Evaluates an expression in frame globals and locals."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "pytest",
+            "file": "src/_pytest/mark/expression.py",
+            "line": 363,
+            "classification": "context_dependent",
+            "reason": "Evaluates a compiled marker expression with restricted builtins; this is not automatically a secure sandbox."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "pytest",
+            "file": "src/_pytest/pytester.py",
+            "line": 296,
+            "classification": "context_dependent",
+            "reason": "Evaluates a test checker expression in supplied namespaces."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "pytest",
+            "file": "src/_pytest/skipping.py",
+            "line": 119,
+            "classification": "context_dependent",
+            "reason": "Evaluates compiled skip-condition expressions."
+        },
+        {
+            "rule": "SEC001",
+            "repository": "pytest",
+            "file": "testing/python/raises_group.py",
+            "line": 1210,
+            "classification": "likely_false_positive",
+            "reason": "Evaluates fixed strings in a test assertion context."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "flask",
+            "file": "src/flask/config.py",
+            "line": 209,
+            "classification": "context_dependent",
+            "reason": "Executes Python configuration files; untrusted configuration files would be dangerous."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "pytest",
+            "file": "bench/empty.py",
+            "line": 5,
+            "classification": "likely_false_positive",
+            "reason": "Dynamically generates benchmark code."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "pytest",
+            "file": "bench/unit_test.py",
+            "line": 7,
+            "classification": "likely_false_positive",
+            "reason": "Dynamically generates benchmark code."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "pytest",
+            "file": "bench/xunit.py",
+            "line": 5,
+            "classification": "likely_false_positive",
+            "reason": "Dynamically generates benchmark code."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "pytest",
+            "file": "doc/en/example/assertion/failure_demo.py",
+            "line": 202,
+            "classification": "likely_false_positive",
+            "reason": "Executes a locally compiled documentation-example source string."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "pytest",
+            "file": "src/_pytest/_py/path.py",
+            "line": 1153,
+            "classification": "context_dependent",
+            "reason": "Executes a Python file into a module namespace; file trust matters."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "pytest",
+            "file": "src/_pytest/assertion/rewrite.py",
+            "line": 179,
+            "classification": "context_dependent",
+            "reason": "Executes compiled assertion-rewritten module code."
+        },
+        {
+            "rule": "SEC002",
+            "repository": "pytest",
+            "file": "testing/python/collect.py",
+            "line": 1238,
+            "classification": "likely_false_positive",
+            "reason": "Executes a fixed function definition string in a test."
+        }
+    ],
+    "limitations": [
+        "Classifications are based on previously inspected source snippets.",
+        "No exploit testing or runtime security validation was performed.",
+        "Context-dependent findings require review of input provenance and trust boundaries."
+    ]
+}

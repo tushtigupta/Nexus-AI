@@ -1,0 +1,363 @@
+{
+    "phase": 11,
+    "title": "Retrieval Evaluation",
+    "evaluation_date": "2026-11-17T15:44:21",
+    "dataset_size": 30650,
+    "benchmark_query_count": 6,
+    "total_retrieved_chunks": 30,
+    "total_relevant_chunks": 13,
+    "metrics": {
+        "mean_precision_at_3": 0.6111,
+        "mean_precision_at_5": 0.4333,
+        "mean_reciprocal_rank": 0.8333
+    },
+    "relevance_criteria": {
+        "1": "Directly relevant to answering the query",
+        "0": "Not directly relevant or only partially related"
+    },
+    "methodology": "Six benchmark queries were evaluated. The top five retrieved chunks for each query were manually inspected and assigned binary relevance labels.",
+    "limitations": [
+        "The benchmark contains only six queries.",
+        "Relevance judgments cover only the top five retrieved chunks.",
+        "Recall was not calculated because an exhaustive relevant-chunk ground-truth set was not established.",
+        "Results represent an exploratory evaluation, not a complete measurement of retrieval quality across the entire dataset."
+    ],
+    "query_results": [
+        {
+            "query_id": "Q1",
+            "query": "How does the Requests library send an HTTP request?",
+            "relevant_chunks": 3,
+            "precision_at_3": 0.6667,
+            "precision_at_5": 0.6,
+            "first_relevant_rank": 1,
+            "reciprocal_rank": 1.0,
+            "retrieved_chunks": [
+                {
+                    "rank": 1,
+                    "chunk_id": "requests_000023",
+                    "name": "request",
+                    "chunk_type": "function",
+                    "repository": "requests",
+                    "file_path": "src\\requests\\api.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 2,
+                    "chunk_id": "requests_000203",
+                    "name": "send",
+                    "chunk_type": "method",
+                    "repository": "requests",
+                    "file_path": "src\\requests\\sessions.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 3,
+                    "chunk_id": "requests_000215",
+                    "name": "request",
+                    "chunk_type": "method",
+                    "repository": "requests",
+                    "file_path": "src\\requests\\sessions.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 4,
+                    "chunk_id": "requests_000223",
+                    "name": "send",
+                    "chunk_type": "method",
+                    "repository": "requests",
+                    "file_path": "src\\requests\\sessions.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 5,
+                    "chunk_id": "requests_000005",
+                    "name": "send",
+                    "chunk_type": "method",
+                    "repository": "requests",
+                    "file_path": "src\\requests\\adapters.py",
+                    "relevance": 0
+                }
+            ]
+        },
+        {
+            "query_id": "Q2",
+            "query": "How does HTTPX implement its top-level request function?",
+            "relevant_chunks": 3,
+            "precision_at_3": 1.0,
+            "precision_at_5": 0.6,
+            "first_relevant_rank": 1,
+            "reciprocal_rank": 1.0,
+            "retrieved_chunks": [
+                {
+                    "rank": 1,
+                    "chunk_id": "httpx_015003",
+                    "name": "request",
+                    "chunk_type": "function",
+                    "repository": "httpx",
+                    "file_path": "httpx\\_api.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 2,
+                    "chunk_id": "httpx_015087",
+                    "name": "request",
+                    "chunk_type": "method",
+                    "repository": "httpx",
+                    "file_path": "httpx\\_client.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 3,
+                    "chunk_id": "httpx_015108",
+                    "name": "request",
+                    "chunk_type": "method",
+                    "repository": "httpx",
+                    "file_path": "httpx\\_client.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 4,
+                    "chunk_id": "httpx_015204",
+                    "name": "request",
+                    "chunk_type": "method",
+                    "repository": "httpx",
+                    "file_path": "httpx\\_exceptions.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 5,
+                    "chunk_id": "httpx_015205",
+                    "name": "request",
+                    "chunk_type": "method",
+                    "repository": "httpx",
+                    "file_path": "httpx\\_exceptions.py",
+                    "relevance": 0
+                }
+            ]
+        },
+        {
+            "query_id": "Q3",
+            "query": "How does Flask register a route handler?",
+            "relevant_chunks": 2,
+            "precision_at_3": 0.6667,
+            "precision_at_5": 0.4,
+            "first_relevant_rank": 1,
+            "reciprocal_rank": 1.0,
+            "retrieved_chunks": [
+                {
+                    "rank": 1,
+                    "chunk_id": "flask_001155",
+                    "name": "route",
+                    "chunk_type": "method",
+                    "repository": "flask",
+                    "file_path": "src\\flask\\sansio\\scaffold.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 2,
+                    "chunk_id": "flask_001156",
+                    "name": "add_url_rule",
+                    "chunk_type": "method",
+                    "repository": "flask",
+                    "file_path": "src\\flask\\sansio\\scaffold.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 3,
+                    "chunk_id": "flask_000773",
+                    "name": "send_static_file",
+                    "chunk_type": "method",
+                    "repository": "flask",
+                    "file_path": "src\\flask\\app.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 4,
+                    "chunk_id": "flask_000808",
+                    "name": "send_static_file",
+                    "chunk_type": "method",
+                    "repository": "flask",
+                    "file_path": "src\\flask\\blueprints.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 5,
+                    "chunk_id": "flask_000794",
+                    "name": "url_for",
+                    "chunk_type": "method",
+                    "repository": "flask",
+                    "file_path": "src\\flask\\app.py",
+                    "relevance": 0
+                }
+            ]
+        },
+        {
+            "query_id": "Q4",
+            "query": "How does FastAPI process an incoming request?",
+            "relevant_chunks": 1,
+            "precision_at_3": 0.3333,
+            "precision_at_5": 0.2,
+            "first_relevant_rank": 2,
+            "reciprocal_rank": 0.5,
+            "retrieved_chunks": [
+                {
+                    "rank": 1,
+                    "chunk_id": "fastapi_002481",
+                    "name": "FastAPI",
+                    "chunk_type": "class",
+                    "repository": "fastapi",
+                    "file_path": "fastapi\\applications.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 2,
+                    "chunk_id": "fastapi_002503",
+                    "name": "middleware",
+                    "chunk_type": "method",
+                    "repository": "fastapi",
+                    "file_path": "fastapi\\applications.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 3,
+                    "chunk_id": "fastapi_002875",
+                    "name": "OAuth2PasswordRequestForm",
+                    "chunk_type": "class",
+                    "repository": "fastapi",
+                    "file_path": "fastapi\\security\\oauth2.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 4,
+                    "chunk_id": "fastapi_002851",
+                    "name": "APIKeyHeader",
+                    "chunk_type": "class",
+                    "repository": "fastapi",
+                    "file_path": "fastapi\\security\\api_key.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 5,
+                    "chunk_id": "fastapi_002528",
+                    "name": "__init__",
+                    "chunk_type": "method",
+                    "repository": "fastapi",
+                    "file_path": "fastapi\\exceptions.py",
+                    "relevance": 0
+                }
+            ]
+        },
+        {
+            "query_id": "Q5",
+            "query": "How does Pydantic validate model data?",
+            "relevant_chunks": 3,
+            "precision_at_3": 0.6667,
+            "precision_at_5": 0.6,
+            "first_relevant_rank": 2,
+            "reciprocal_rank": 0.5,
+            "retrieved_chunks": [
+                {
+                    "rank": 1,
+                    "chunk_id": "pydantic_008905",
+                    "name": "data",
+                    "chunk_type": "method",
+                    "repository": "pydantic",
+                    "file_path": "pydantic-core\\python\\pydantic_core\\core_schema.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 2,
+                    "chunk_id": "pydantic_007203",
+                    "name": "model_validate_strings",
+                    "chunk_type": "method",
+                    "repository": "pydantic",
+                    "file_path": "pydantic\\main.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 3,
+                    "chunk_id": "pydantic_007201",
+                    "name": "model_validate",
+                    "chunk_type": "method",
+                    "repository": "pydantic",
+                    "file_path": "pydantic\\main.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 4,
+                    "chunk_id": "pydantic_007229",
+                    "name": "validate",
+                    "chunk_type": "method",
+                    "repository": "pydantic",
+                    "file_path": "pydantic\\main.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 5,
+                    "chunk_id": "pydantic_008906",
+                    "name": "field_name",
+                    "chunk_type": "method",
+                    "repository": "pydantic",
+                    "file_path": "pydantic-core\\python\\pydantic_core\\core_schema.py",
+                    "relevance": 0
+                }
+            ]
+        },
+        {
+            "query_id": "Q6",
+            "query": "How does pytest execute a test function?",
+            "relevant_chunks": 1,
+            "precision_at_3": 0.3333,
+            "precision_at_5": 0.2,
+            "first_relevant_rank": 1,
+            "reciprocal_rank": 1.0,
+            "retrieved_chunks": [
+                {
+                    "rank": 1,
+                    "chunk_id": "pytest_017409",
+                    "name": "runtest",
+                    "chunk_type": "method",
+                    "repository": "pytest",
+                    "file_path": "src\\_pytest\\python.py",
+                    "relevance": 1
+                },
+                {
+                    "rank": 2,
+                    "chunk_id": "pytest_017391",
+                    "name": "Metafunc",
+                    "chunk_type": "class",
+                    "repository": "pytest",
+                    "file_path": "src\\_pytest\\python.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 3,
+                    "chunk_id": "pytest_020455",
+                    "name": "test_passfunction",
+                    "chunk_type": "method",
+                    "repository": "pytest",
+                    "file_path": "testing\\test_runner.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 4,
+                    "chunk_id": "pytest_021191",
+                    "name": "h",
+                    "chunk_type": "function",
+                    "repository": "pytest",
+                    "file_path": "testing\\code\\test_excinfo.py",
+                    "relevance": 0
+                },
+                {
+                    "rank": 5,
+                    "chunk_id": "pytest_020318",
+                    "name": "test_assert_outcomes_after_pytest_error",
+                    "chunk_type": "function",
+                    "repository": "pytest",
+                    "file_path": "testing\\test_pytester.py",
+                    "relevance": 0
+                }
+            ]
+        }
+    ]
+}

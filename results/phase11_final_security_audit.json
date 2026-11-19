@@ -1,0 +1,103 @@
+{
+    "project": "AI Software Engineering Agent",
+    "phase": 11,
+    "report_title": "Consolidated Security Audit and Evaluation",
+    "generated_at": "2026-11-17T15:32:42",
+    "overall_status": "All 37 Phase 9 findings and 11 Phase 10 findings have been inspected and preliminarily classified; context-dependent findings require further security verification.",
+    "scan_summary": {
+        "phase9_findings": 37,
+        "phase10_findings": 11,
+        "total_scan_observations": 48,
+        "unique_vulnerabilities_confirmed": 0
+    },
+    "phase9_audit": {
+        "scan_findings": 37,
+        "inspected_findings": 37,
+        "classifications": {
+            "context_dependent": 24,
+            "likely_false_positive": 13,
+            "awaiting_classification_record_verification": 0,
+            "confirmed_vulnerability": 0
+        },
+        "rule_breakdown": {
+            "SEC001": {
+                "total": 10,
+                "context_dependent": 8,
+                "likely_false_positive": 2
+            },
+            "SEC002": {
+                "total": 8,
+                "context_dependent": 3,
+                "likely_false_positive": 5
+            },
+            "SEC003": {
+                "total": 5,
+                "context_dependent": 5
+            },
+            "SEC004": {
+                "total": 1,
+                "context_dependent": 1
+            },
+            "SEC006": {
+                "total": 3,
+                "context_dependent": 3
+            },
+            "SEC008": {
+                "total": 10,
+                "context_dependent": 4,
+                "likely_false_positive": 6
+            }
+        }
+    },
+    "phase10_audit": {
+        "scan_type": "Scoped Python source pattern scan",
+        "files_scanned": 37,
+        "parse_failures": 0,
+        "scan_findings": 11,
+        "inspected_findings": 11,
+        "classifications": {
+            "likely_false_positive_in_inspected_test_context": 11,
+            "context_dependent": 0,
+            "confirmed_vulnerability": 0
+        },
+        "rule_breakdown": {
+            "SEC003_pickle": {
+                "total": 7,
+                "classification": "likely_false_positive_in_inspected_test_context"
+            },
+            "SEC006_tls_verify_false": {
+                "total": 4,
+                "classification": "likely_false_positive_in_inspected_test_context"
+            }
+        },
+        "additional_test": {
+            "file": "requests/tests/test_requests.py",
+            "line": 3093,
+            "result": "PASSED",
+            "match": true
+        }
+    },
+    "important_interpretation": [
+        "Phase 9 and Phase 10 are separate scans with different scopes.",
+        "The 48 observations must not be interpreted as 48 unique vulnerabilities.",
+        "Context-dependent findings require further verification.",
+        "Likely false-positive classifications apply only to the inspected source contexts.",
+        "No confirmed vulnerability was established by these inspections.",
+        "SEC001 and SEC002 source contexts were inspected, but their individual classifications require verification against saved evidence."
+    ],
+    "limitations": [
+        "The security scanner uses source-pattern detection.",
+        "No comprehensive penetration testing was performed.",
+        "No exploit testing was performed.",
+        "A source-context inspection cannot prove that an entire repository is secure.",
+        "The audit does not guarantee the absence of undiscovered vulnerabilities."
+    ],
+    "supporting_files": [
+        "phase9_static_security_findings.json",
+        "phase10_live_validation.json",
+        "phase11_sec008_audit.json",
+        "phase11_sec003_sec006_audit.json",
+        "phase11_phase10_additional_finding_audit.json",
+        "phase11_sec001_sec002_audit.json"
+    ]
+}

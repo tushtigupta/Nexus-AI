@@ -1,0 +1,407 @@
+{
+  "phase": 9,
+  "title": "Static Security Analysis",
+  "generated_at_utc": "2026-10-27T13:31:15.725499+00:00",
+  "source_root": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories",
+  "files_scanned": 1451,
+  "files_parse_failed": 0,
+  "findings_count": 37,
+  "severity_counts": {
+    "HIGH": 37
+  },
+  "rule_counts": {
+    "SEC003": 5,
+    "SEC001": 10,
+    "SEC008": 10,
+    "SEC002": 8,
+    "SEC004": 1,
+    "SEC006": 3
+  },
+  "repository_counts": {
+    "black": 6,
+    "fastapi": 5,
+    "flask": 3,
+    "httpx": 1,
+    "pydantic": 6,
+    "pytest": 14,
+    "rich": 2
+  },
+  "limitations": [
+    "Findings are potential risks, not confirmed vulnerabilities.",
+    "Pattern matching can produce false positives and miss vulnerabilities.",
+    "Test directories and common generated/vendor directories are excluded.",
+    "The scanner does not execute scanned source code."
+  ],
+  "findings": [
+    {
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\black\\cache.py",
+      "line": 80,
+      "rule_id": "SEC003",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: pickle.load()",
+      "recommendation": "Never deserialize untrusted pickle data. Prefer a non-executable format such as JSON where appropriate."
+    },
+    {
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\conv.py",
+      "line": 186,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\conv.py",
+      "line": 212,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\grammar.py",
+      "line": 124,
+      "rule_id": "SEC003",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: pickle.load()",
+      "recommendation": "Never deserialize untrusted pickle data. Prefer a non-executable format such as JSON where appropriate."
+    },
+    {
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\grammar.py",
+      "line": 129,
+      "rule_id": "SEC003",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: pickle.loads()",
+      "recommendation": "Never deserialize untrusted pickle data. Prefer a non-executable format such as JSON where appropriate."
+    },
+    {
+      "repository": "black",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\black\\src\\blib2to3\\pgen2\\pgen.py",
+      "line": 100,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial004_an_py310.py",
+      "line": 13,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "SECRET_KEY=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial004_py310.py",
+      "line": 12,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "SECRET_KEY=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial005_an_py310.py",
+      "line": 17,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "SECRET_KEY=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\docs_src\\security\\tutorial005_py310.py",
+      "line": 16,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "SECRET_KEY=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "fastapi",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\fastapi\\fastapi\\openapi\\models.py",
+      "line": 322,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "apiKey=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "flask",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\flask\\src\\flask\\cli.py",
+      "line": 1023,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "flask",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\flask\\src\\flask\\config.py",
+      "line": 66,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "SECRET_KEY=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "flask",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\flask\\src\\flask\\config.py",
+      "line": 209,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "httpx",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\httpx\\httpx\\_urls.py",
+      "line": 336,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "username=\"jo@gmail.com\", password=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\docs\\plugins\\main.py",
+      "line": 459,
+      "rule_id": "SEC004",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: yaml.load()",
+      "recommendation": "Use yaml.safe_load() or an explicitly safe loader when processing untrusted YAML."
+    },
+    {
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\deprecated\\parse.py",
+      "line": 55,
+      "rule_id": "SEC003",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: pickle.loads()",
+      "recommendation": "Never deserialize untrusted pickle data. Prefer a non-executable format such as JSON where appropriate."
+    },
+    {
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\types.py",
+      "line": 1835,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "user = User(username='scolvin', password=<REDACTED>)",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\types.py",
+      "line": 1862,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "model = Model(password=<REDACTED>, password_bytes=b'IAmSensitiveBytes')",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\v1\\parse.py",
+      "line": 42,
+      "rule_id": "SEC003",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: pickle.loads()",
+      "recommendation": "Never deserialize untrusted pickle data. Prefer a non-executable format such as JSON where appropriate."
+    },
+    {
+      "repository": "pydantic",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pydantic\\pydantic\\v1\\utils.py",
+      "line": 195,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\bench\\empty.py",
+      "line": 5,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\bench\\unit_test.py",
+      "line": 7,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\bench\\xunit.py",
+      "line": 5,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\doc\\en\\example\\assertion\\failure_demo.py",
+      "line": 202,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\_code\\code.py",
+      "line": 175,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\_py\\path.py",
+      "line": 1153,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\assertion\\rewrite.py",
+      "line": 179,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\mark\\expression.py",
+      "line": 363,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\pytester.py",
+      "line": 296,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\src\\_pytest\\skipping.py",
+      "line": 119,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\freeze\\create_executable.py",
+      "line": 16,
+      "rule_id": "SEC006",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: subprocess.check_call() with shell=True",
+      "recommendation": "Avoid shell=True with untrusted input. Use an argument list with shell=False where possible."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\plugins_integration\\django_settings.py",
+      "line": 4,
+      "rule_id": "SEC008",
+      "severity": "HIGH",
+      "confidence": "LOW",
+      "evidence": "SECRET_KEY=<REDACTED>",
+      "recommendation": "Check whether this is a real credential. Move secrets to environment variables or a secret manager, and rotate exposed credentials."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\python\\collect.py",
+      "line": 1238,
+      "rule_id": "SEC002",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: exec()",
+      "recommendation": "Avoid executing dynamically constructed code. Replace with explicit, constrained operations."
+    },
+    {
+      "repository": "pytest",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\pytest\\testing\\python\\raises_group.py",
+      "line": 1210,
+      "rule_id": "SEC001",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "evidence": "Call detected: eval()",
+      "recommendation": "Avoid evaluating untrusted strings. Use a safe parser or explicit input validation."
+    },
+    {
+      "repository": "rich",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\rich\\tools\\make_width_tables.py",
+      "line": 22,
+      "rule_id": "SEC006",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: subprocess.run() with shell=True",
+      "recommendation": "Avoid shell=True with untrusted input. Use an argument list with shell=False where possible."
+    },
+    {
+      "repository": "rich",
+      "file": "C:\\Users\\Tushti Gupta\\AI_Software_Engineering_Agent\\data\\raw_repositories\\rich\\tools\\make_width_tables.py",
+      "line": 53,
+      "rule_id": "SEC006",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "evidence": "Call detected: subprocess.run() with shell=True",
+      "recommendation": "Avoid shell=True with untrusted input. Use an argument list with shell=False where possible."
+    }
+  ]
+}

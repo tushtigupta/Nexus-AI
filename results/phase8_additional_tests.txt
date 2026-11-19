@@ -1,0 +1,15 @@
+Phase 8 - Additional API wrapper tests
+
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.5, pytest-8.3.4, pluggy-1.5.0 -- C:\Users\Tushti Gupta\anaconda3\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Tushti Gupta\AI_Software_Engineering_Agent\notebooks
+plugins: anyio-4.7.0
+[1mcollecting ... [0mcollected 2 items
+
+test_phase8_api_wrappers.py::test_get_delegates_to_request [32mPASSED[0m[32m        [ 50%][0m
+test_phase8_api_wrappers.py::test_options_delegates_to_request [32mPASSED[0m[32m    [100%][0m
+
+[32m============================== [32m[1m2 passed[0m[32m in 0.33s[0m[32m ==============================[0m
+
+Pytest exit code: 0
