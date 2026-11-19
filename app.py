@@ -396,9 +396,19 @@ def load_coordinator():
 
     from multi_agent_coordinator import MultiAgentCoordinator
 
+    try:
+        groq_api_key = st.secrets.get("GROQ_API_KEY")
+    except Exception:
+        groq_api_key = None
+
+    llm_provider = "groq" if groq_api_key else "ollama"
+
     return MultiAgentCoordinator(
         project_root=str(PROJECT_ROOT),
-        model_name="qwen2.5:3b"
+        model_name="qwen2.5:3b",
+        llm_provider=llm_provider,
+        groq_api_key=groq_api_key,
+        groq_model="openai/gpt-oss-20b"
     )
 
 # ============================================================

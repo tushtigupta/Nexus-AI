@@ -17,9 +17,19 @@ class MultiAgentCoordinator:
     and existing test-report analysis.
     """
 
-    def __init__(self, project_root, model_name="qwen2.5:3b"):
+    def __init__(
+        self,
+        project_root,
+        model_name="qwen2.5:3b",
+        llm_provider="ollama",
+        groq_api_key=None,
+        groq_model="openai/gpt-oss-20b"
+    ):
         self.root = Path(project_root)
         self.model_name = model_name
+        self.llm_provider = llm_provider
+        self.groq_api_key = groq_api_key
+        self.groq_model = groq_model
         self.data_dir = self.root / "data" / "processed_code"
         self.results_dir = self.root / "results"
 
@@ -179,7 +189,32 @@ class MultiAgentCoordinator:
         return results
 
     def _ask_llm(self, prompt):
-        """Use the configured local Ollama model."""
+        """Use Groq in cloud mode and Ollama in local mode."""
+
+        if self.llm_provider == "groq":
+            if not self.groq_api_key:
+                raise RuntimeError("Groq API key is missing.")
+
+            response = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {self.groq_api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": self.groq_model,
+                    "messages": [
+                        {"role": "user", "content": prompt}
+                    ],
+                    "max_completion_tokens": 600
+                },
+                timeout=(10, 120)
+            )
+            response.raise_for_status()
+            return (
+                response.json()["choices"][0]["message"]["content"] or ""
+            ).strip()
+
         response = requests.post(
             "http://localhost:11434/api/generate",
             json={
