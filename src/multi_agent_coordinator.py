@@ -240,15 +240,31 @@ class MultiAgentCoordinator:
                 }
 
             evidence_parts = []
-            for item in retrieved_code:
-                evidence_parts.append(
+            total_chars = 0
+            max_chunks = 3
+            max_chunk_chars = 4000
+            max_total_chars = 12000
+
+            for item in retrieved_code[:max_chunks]:
+                source_code = str(item.get('code', ''))
+                source_code = source_code[:max_chunk_chars]
+
+                evidence_part = (
                     f"Repository: {item.get('repository', 'unknown')}\n"
                     f"File: {item.get('file_path', 'unknown')}\n"
                     f"Function: {item.get('name', 'unknown')}\n"
                     f"Lines: {item.get('line_start', '?')}-"
                     f"{item.get('line_end', '?')}\n"
-                    f"SOURCE CODE:\n{item.get('code', '')}"
+                    f"SOURCE CODE:\n{source_code}"
                 )
+
+                remaining = max_total_chars - total_chars
+                if remaining <= 0:
+                    break
+
+                evidence_part = evidence_part[:remaining]
+                evidence_parts.append(evidence_part)
+                total_chars += len(evidence_part)
 
             evidence = "\n\n".join(evidence_parts)
             prompt = f"""
